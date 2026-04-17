@@ -2,7 +2,9 @@ spring:
   application:
     name: apirest
   profiles:
-    active: dev
+    # En local usará "dev" por defecto.
+    # En Render pondrás SPRING_PROFILES_ACTIVE=prod
+    active: ${SPRING_PROFILES_ACTIVE:dev}
 
 ---
 spring:
@@ -30,10 +32,17 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/conflictdb}
+    # IMPORTANTE: en Render pon DB_URL con formato JDBC
+    # Ej: jdbc:postgresql://db-<project-ref>.supabase.co:5432/postgres
+    url: ${DB_URL}
     driver-class-name: org.postgresql.Driver
-    username: ${SPRING_DATASOURCE_USERNAME:youruser}
-    password: ${SPRING_DATASOURCE_PASSWORD:yourpass}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: validate
+      # Para el primer deploy es mejor "update" (si dejas validate puede fallar si no existen tablas)
+      ddl-auto: update
+    show-sql: false
+
+server:
+  port: ${PORT:8080}
