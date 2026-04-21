@@ -32,12 +32,12 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    # IMPORTANTE: en Render pon DB_URL con formato JDBC
-    # Ej: jdbc:postgresql://db-<project-ref>.supabase.co:5432/postgres
-    url: ${DB_URL}
+    # IMPORTANTE: en Render pon SPRING_DATASOURCE_URL con formato JDBC
+    # Ej: jdbc:postgresql://db.<project-ref>.supabase.co:5432/postgres?sslmode=require
+    url: ${SPRING_DATASOURCE_URL}
     driver-class-name: org.postgresql.Driver
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
       # Para el primer deploy es mejor "update" (si dejas validate puede fallar si no existen tablas)
