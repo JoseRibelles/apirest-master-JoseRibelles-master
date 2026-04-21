@@ -23,6 +23,12 @@ spring:
     console:
       enabled: true
       path: /h2-console
+  web:
+    cors:
+      allowed-origins: "http://localhost:5173,http://localhost:3000"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: "*"
+      allow-credentials: true
 
 ---
 spring:
@@ -45,6 +51,12 @@ spring:
       ddl-auto: update
       dialect: org.hibernate.dialect.PostgreSQL15Dialect
     show-sql: false
+  web:
+    cors:
+      allowed-origins: "https://conflict-front-end-jose-ribelles.vercel.app"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: "*"
+      allow-credentials: true
 
 server:
   port: ${PORT:8080}
