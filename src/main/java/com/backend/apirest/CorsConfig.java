@@ -1,3 +1,5 @@
+package com.backend.apirest;
+
 @Configuration
 public class CorsConfig {
     @Bean
